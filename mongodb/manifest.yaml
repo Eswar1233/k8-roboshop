@@ -29,15 +29,18 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: nginx
+  name: mongodb
+  namespace: roboshop
   labels:
-    purpose: service-demo
+    component: mongodb
+    project: roboshop
+    tier: database    
 spec:
   selector:
-    purpose: service-demo
+    component: mongodb
     project: roboshop
-    environment: dev
+    tier: database 
   ports:
     - protocol: TCP
-      port: 80 # service port
-      targetPort: 80 #container port
+      port: 27017 # service port
+      targetPort: 27017 #container port

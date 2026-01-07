@@ -38,7 +38,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        # image: eswarteja123/frontend:v1
+        image: eswarteja123/frontend:v1
         # envFrom:
         # - configMapRef:
         #     name: frontend

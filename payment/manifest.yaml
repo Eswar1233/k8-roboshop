@@ -58,7 +58,7 @@ spec:
         envFrom:
         - configMapRef:
             name: payment
-        -secretRef:
+        - secretRef:
             name: payment
 --- #service creation ------------
 apiVersion: v1

@@ -38,10 +38,10 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: eswarteja123/frontend:v1
-        envFrom:
-        - configMapRef:
-            name: frontend
+        # image: eswarteja123/frontend:v1
+        # envFrom:
+        # - configMapRef:
+        #     name: frontend
 --- #service creation ------------
 apiVersion: v1
 kind: Service

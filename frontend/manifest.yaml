@@ -9,8 +9,8 @@
 #     project: roboshop
 #     tier: web
 # data:
-#   MONGO: "true" 
-#   MONGO_URL: "mongodb://mongodb:27017/catalogue"
+    # CART_ENDPOINT: "cart:8080" 
+    # DB_HOST: "mysql"
 --- # Deployement creation for pod----------
 apiVersion: apps/v1
 kind: Deployment

@@ -38,6 +38,9 @@ spec:
       containers:
       - name: mysql
         image: joindevops/mysql:v1
+        envFrom:
+        - secretRef:
+            name: mysql
 --- #service creation
 apiVersion: v1
 kind: Service

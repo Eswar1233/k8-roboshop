@@ -40,7 +40,7 @@ spec:
       - name: rabbitmq
         image: rabbitmq:3
         envFrom:
-        - configMapRef:
+        - secretRef:
            name: rabbitmq
 --- #service creation
 apiVersion: v1

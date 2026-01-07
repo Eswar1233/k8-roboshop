@@ -1,63 +1,64 @@
 --- # config map creation--------------
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: shipping
-  namespace: roboshop
-  labels:
-    component: shipping
-    project: roboshop
-    tier: app
-data:
-    CART_ENDPOINT: "cart:8080" 
-    DB_HOST: "mysql"
+# apiVersion: v1
+# kind: ConfigMap
+# metadata:
+#   name: frontend
+#   namespace: roboshop
+#   labels:
+#     component: frontend
+#     project: roboshop
+#     tier: web
+# data:
+#   MONGO: "true" 
+#   MONGO_URL: "mongodb://mongodb:27017/catalogue"
 --- # Deployement creation for pod----------
 apiVersion: apps/v1
 kind: Deployment
 metadata: 
-  name: shipping
+  name: frontend
   labels:
-    component: shipping
+    component: frontend
     project: roboshop
-    tier: app
+    tier: web
 spec:
   replicas: 1
   # these are the labels replica set use to create pod replicas.This should match pod labels.
   selector: 
     matchLabels:
-      component: shipping
+      component: frontend
       project: roboshop
-      tier: app
+      tier: web
   #this is pod definition
   template:
     metadata: 
       labels:
-        component: shipping
+        component: frontend
         project: roboshop
-        tier: app
+        tier: web
     spec:
       containers:
-      - name: shipping
-        image: eswarteja123/shipping:v1
+      - name: frontend
+        image: eswarteja123/frontend:v1
         envFrom:
         - configMapRef:
-            name: shipping
+            name: frontend
 --- #service creation ------------
 apiVersion: v1
 kind: Service
 metadata:
-  name: shipping
+  name: frontend
   namespace: roboshop
   labels:
-    component: shipping
+    component: frontend
     project: roboshop
-    tier: app    
+    tier: web    
 spec:
+  type: LoadBalancer
   selector:
-    component: shipping
+    component: frontend
     project: roboshop
-    tier: app 
+    tier: web 
   ports:
     - protocol: TCP
-      port: 8080 # service port
-      targetPort: 8080 #container port
+      port: 80 # service port
+      targetPort: 80 #container port

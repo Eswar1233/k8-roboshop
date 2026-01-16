@@ -1,16 +1,4 @@
---- # we use kubernetes secret for mysql passowrd
-apiVersion: v1
-kind: Secret
-metadata:
-  name: mysql
-  labels:
-    component: mysql
-    project: roboshop
-    tier: database
-type: Opaque
-data:
-  MYSQL_ROOT_PASSWORD: "Um9ib1Nob3BAMQ=="
----
+
 apiVersion: apps/v1
 kind: Deployment
 metadata: 
@@ -38,9 +26,9 @@ spec:
       containers:
       - name: mysql
         image: joindevops/mysql:v1
-        envFrom:
-        - secretRef:
-            name: mysql
+        # envFrom:
+        # - secretRef:
+        #     name: mysql
 --- #service creation
 apiVersion: v1
 kind: Service
